@@ -4,6 +4,11 @@ class GamesController < ApplicationController
         render json: games
     end 
 
+    def show
+        game = Game.find(params[:id])
+        render json: game, serializer:GameUserSerializer
+    end 
+
     def update 
         game = Game.find(params[:id])
         game.update!(game_params)
