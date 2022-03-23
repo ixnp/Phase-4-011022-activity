@@ -1,34 +1,35 @@
-
 # Deliverables
 Create a rails app 
 
->Note: if you get stuck review Password Protection
 
-You've been hired to create a Game Review app. It will have a React client and Rails api. 
 
-1. Add BCrypt to your gem file and bundle.
+Add Cookies and sessions to your app
+1. Add the following middleware to `config/application.rb`   
+    config.middleware.use ActionDispatch::Cookies  
+    config.middleware.use ActionDispatch::Session::CookieStore   
+    config.action_dispatch.cookies_same_site_protection = :strict   
  <details>
       <summary>
         solution 
       </summary>
       <hr/>
-        gem 'bcrypt', '~> 3.1.7'
+      <img src="assets/cookie_middleware.png" alt="middleware" style="margin-right: 10px;" />
       <hr/>
  </details>
 
-2. Take a moment to play with BCrypt in the console to gain an understanding of what it's doing for us. 
+2. Include cookies in your controller.
 
  <details>
       <summary>
         solution 
       </summary>
       <hr/>
-      <img src="assets/bcyrpt_test.png" alt="bcyrpt" style="margin-right: 10px;" />
+      <img src="assets/cookies_controller.png" alt="controller" style="margin-right: 10px;" />
       <hr/>
  </details>
 
 
-3. Add a password_digest column to user.
+3. Create a custom login route that points to a login action. In the session controller create a login method that authenticates a user and sets their `user_id` to sessions when they login. 
 
 
    <details>
@@ -36,11 +37,11 @@ You've been hired to create a Game Review app. It will have a React client and R
         solution 
       </summary>
       <hr/>
-      <img src="assets/password_digest.png" alt="password digest" style="margin-right: 10px;" />
+      <img src="assets/login_action.png.png" alt="password digest" style="margin-right: 10px;" />
       <hr/>
  </details>
 
- 4. Add has_secure_password to users and add the password param to the users strong params in the users controller. Why is this password instead of password_digest? Test your user create route to prove your hashing is working.
+ 4. Create a custom logout route that removes the user_id from sessions. 
 
 
    <details>
@@ -48,6 +49,9 @@ You've been hired to create a Game Review app. It will have a React client and R
         solution 
       </summary>
       <hr/>
-      <img src="assets/secure_password.png" alt="secure password" style="margin-right: 10px;" />
+      <img src="assets/logout.png" alt="logout" style="margin-right: 10px;" />
       <hr/>
  </details>
+
+ Bonus 
+ 5. Add an action that verifies if there is a user in sessions in the ApplicationController. Run that action before all other actions excluding login and signup. 
