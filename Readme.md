@@ -1,57 +1,33 @@
 # Deliverables
-Create a rails app 
+Deploy this app!
+> Note: You do not have a client, so you will not need to build out the Proc or Client content.
+
+1. There is only one Deliverable Deploy this app. 
+Convert your app to PostgreSQL using the steps provided by Heroku. [SQLite on Heroku](https://devcenter.heroku.com/articles/sqlite3) 
+>Note: `database.yml` is in config.   
+
+>Note: you may need to drop your database with rails db:drop.   
+
+>Note: Stop after "rake db:migrate" and move on to step 2.
+
+2. Make sure you have the correct environment set up. `ruby -v` should show 2.7.4. Make sure PostgreSQL is installed and started  `brew services start postgresql`. After your environment is confirmed log into heroku with ` heroku login`
+
+3. Add support for Ubuntu. `bundle lock --add-platform x86_64-linux --add-platform ruby`
 
 
+4. Push to Heroku and test out your routes!
+> Note: you may need to git init if you can't add or commit 
+```
+# creates a git repo
+ git init
+ 
+ git add .
+ git commit -m 'Initial commit'
 
-Add Cookies and sessions to your app
-1. Add the following middleware to `config/application.rb`   
-    config.middleware.use ActionDispatch::Cookies  
-    config.middleware.use ActionDispatch::Session::CookieStore   
-    config.action_dispatch.cookies_same_site_protection = :strict   
- <details>
-      <summary>
-        solution 
-      </summary>
-      <hr/>
-      <img src="assets/cookie_middleware.png" alt="middleware" style="margin-right: 10px;" />
-      <hr/>
- </details>
+  heroku create
+  git push heroku main
 
-2. Include cookies in your controller.
+  heroku run rails db:migrate db:seed
 
- <details>
-      <summary>
-        solution 
-      </summary>
-      <hr/>
-      <img src="assets/cookies_controller.png" alt="controller" style="margin-right: 10px;" />
-      <hr/>
- </details>
-
-
-3. Create a custom login route that points to a login action. In the session controller create a login method that authenticates a user and sets their `user_id` to sessions when they login. 
-
-
-   <details>
-      <summary>
-        solution 
-      </summary>
-      <hr/>
-      <img src="assets/login_action.png.png" alt="password digest" style="margin-right: 10px;" />
-      <hr/>
- </details>
-
- 4. Create a custom logout route that removes the user_id from sessions. 
-
-
-   <details>
-      <summary>
-        solution 
-      </summary>
-      <hr/>
-      <img src="assets/logout.png" alt="logout" style="margin-right: 10px;" />
-      <hr/>
- </details>
-
- Bonus 
- 5. Add an action that verifies if there is a user in sessions in the ApplicationController. Run that action before all other actions excluding login and signup. 
+```
+>Note: If nothing comes up on the browser make sure you are visiting a route like `your-app-name.herokuapp.com/games`
