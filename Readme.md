@@ -4,11 +4,14 @@ Deploy this app!
 
 1. There is only one Deliverable Deploy this app. 
 Convert your app to PostgreSQL using the steps provided by Heroku. [SQLite on Heroku](https://devcenter.heroku.com/articles/sqlite3) 
+
+>Note: start at "If you have a pre-existing Rails app, or you ran the rails new command without the -d postgresql flag you can convert your application manually."
+
 >Note: `database.yml` is in config.   
 
->Note: you may need to drop your database with rails db:drop.   
+>Note: you may need to drop your database with rails db:drop  
 
->Note: Stop after "rake db:migrate" and move on to step 2.
+>Note: Stop after "rake db:migrate" and move on to step 2
 
 2. Make sure you have the correct environment set up. `ruby -v` should show 2.7.4. Make sure PostgreSQL is installed and started  `brew services start postgresql`. After your environment is confirmed log into heroku with ` heroku login`
 
